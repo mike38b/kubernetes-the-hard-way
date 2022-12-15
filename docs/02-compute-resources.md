@@ -1,6 +1,6 @@
 # Provisioning Compute Resources
 
-Note: You must have VirtualBox and Vagrant configured at this point
+Note: You must have Parallels and Vagrant configured at this point
 
 Download this github repository and cd into the vagrant folder
 
@@ -41,7 +41,7 @@ This does the below:
     > These are the default settings. These can be changed in the Vagrant file
 
 - Add's a DNS entry to each of the nodes to access internet
-    > DNS: 8.8.8.8
+    > DNS: 1.1.1.1
 
 - Sets required kernel settings for kubernetes networking to function correctly.
 
@@ -63,7 +63,7 @@ Use your favourite SSH Terminal tool (putty).
 Use the above IP addresses. Username and password based SSH is disabled by default.
 Vagrant generates a private key for each of these VMs. It is placed under the .vagrant folder (in the directory you ran the `vagrant up` command from) at the below path for each VM:
 
-**Private Key Path:** `.vagrant/machines/<machine name>/virtualbox/private_key`
+**Private Key Path:** `.vagrant/machines/<machine name>/parallels/private_key`
 
 **Username/Password:** `vagrant/vagrant`
 
@@ -90,17 +90,6 @@ Then re-provision. Only the missing VMs will be re-provisioned
 ```bash
 vagrant up
 ```
-
-
-Sometimes the delete does not delete the folder created for the VM and throws an error similar to this:
-
-VirtualBox error:
-
-    VBoxManage.exe: error: Could not rename the directory 'D:\VirtualBox VMs\ubuntu-bionic-18.04-cloudimg-20190122_1552891552601_76806' to 'D:\VirtualBox VMs\kubernetes-ha-worker-2' to save the settings file (VERR_ALREADY_EXISTS)
-    VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component SessionMachine, interface IMachine, callee IUnknown
-    VBoxManage.exe: error: Context: "SaveSettings()" at line 3105 of file VBoxManageModifyVM.cpp
-
-In such cases delete the VM, then delete the VM folder and then re-provision, e.g.
 
 ```bash
 vagrant destroy worker-2

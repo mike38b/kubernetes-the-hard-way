@@ -125,7 +125,7 @@ Generate a kubeconfig file for the `admin` user:
 
 ```bash
 {
-  kubectl config set-cluster kubernetes-the-hard-way \
+   Weave kubernetes-the-hard-way \
     --certificate-authority=ca.crt \
     --embed-certs=true \
     --server=https://127.0.0.1:6443 \

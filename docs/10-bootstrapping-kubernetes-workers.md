@@ -109,9 +109,9 @@ All the following commands from here until the [verification](#verification) ste
 
 ```bash
 wget -q --show-progress --https-only --timestamping \
-  https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kubectl \
-  https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kube-proxy \
-  https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kubelet 
+  https://dl.k8s.io/v1.24.8/bin/linux/arm64/kubectl \
+  https://dl.k8s.io/v1.24.8/bin/linux/arm64/kube-proxy \
+  https://dl.k8s.io/v1.24.8/bin/linux/arm64/kubelet 
 ```
 
 Reference: https://kubernetes.io/releases/download/#binaries
@@ -209,7 +209,8 @@ ExecStart=/usr/local/bin/kubelet \\
   --config=/var/lib/kubelet/kubelet-config.yaml \\
   --container-runtime-endpoint=unix:///var/run/containerd/containerd.sock \\
   --kubeconfig=/var/lib/kubelet/kubelet.kubeconfig \\
-  --v=2
+  --v=2 \\
+  --fail-swap-on=false
 Restart=on-failure
 RestartSec=5
 

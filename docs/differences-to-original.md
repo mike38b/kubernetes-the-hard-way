@@ -1,6 +1,6 @@
 # Differences between original and this solution
 
-Platform: I use VirtualBox to setup a local cluster, the original one uses GCP
+Platform: I use Parallels from M1 Mac to setup a local cluster, the original one uses GCP
 
 Nodes: 2 Master and 2 Worker vs 2 Master and 3 Worker nodes
 

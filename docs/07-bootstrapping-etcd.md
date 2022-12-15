@@ -21,15 +21,15 @@ Download the official etcd release binaries from the [etcd](https://github.com/e
 
 ```bash
 wget -q --show-progress --https-only --timestamping \
-  "https://github.com/coreos/etcd/releases/download/v3.5.3/etcd-v3.5.3-linux-amd64.tar.gz"
+  "https://github.com/etcd-io/etcd/releases/download/v3.5.6/etcd-v3.5.6-linux-arm64.tar.gz"
 ```
 
 Extract and install the `etcd` server and the `etcdctl` command line utility:
 
 ```bash
 {
-  tar -xvf etcd-v3.5.3-linux-amd64.tar.gz
-  sudo mv etcd-v3.5.3-linux-amd64/etcd* /usr/local/bin/
+  tar -xvf etcd-v3.5.6-linux-arm64.tar.gz
+  sudo mv etcd-v3.5.6-linux-arm64/etcd* /usr/local/bin/
 }
 ```
 
@@ -54,7 +54,7 @@ The instance internal IP address will be used to serve client requests and commu
 Retrieve the internal IP address of the master(etcd) nodes, and also that of master-1 and master-2 for the etcd cluster member list
 
 ```bash
-INTERNAL_IP=$(ip addr show enp0s8 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
+INTERNAL_IP=$(ip addr show eth1 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
 MASTER_1=$(dig +short master-1)
 MASTER_2=$(dig +short master-2)
 ```

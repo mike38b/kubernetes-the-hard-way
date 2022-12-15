@@ -15,10 +15,16 @@ LB_IP_START = 30
 def setup_dns(node)
   # Set up /etc/hosts
   node.vm.provision "setup-hosts", :type => "shell", :path => "ubuntu/vagrant/setup-hosts.sh" do |s|
-    s.args = ["enp0s8", node.vm.hostname]
+    s.args = ["eth1", node.vm.hostname]
   end
   # Set up DNS resolution
   node.vm.provision "setup-dns", type: "shell", :path => "ubuntu/update-dns.sh"
+end
+
+def setup_kube(node)
+  # Set up /etc/hosts
+  node.vm.provision "setup-kube", :type => "shell", :path => "ubuntu/setup_master.sh"
+
 end
 
 # Runs provisioning steps that are required by masters and workers
@@ -49,7 +55,8 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   # config.vm.box = "base"
-  config.vm.box = "ubuntu/jammy64"
+  config.vm.box = "jharoian3/ubuntu-22.04-arm64"
+  config.vm.box_version = "0.3"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -60,12 +67,13 @@ Vagrant.configure("2") do |config|
   (1..NUM_MASTER_NODE).each do |i|
     config.vm.define "master-#{i}" do |node|
       # Name shown in the GUI
-      node.vm.provider "virtualbox" do |vb|
+      node.vm.provider "parallels" do |vb|
+        vb.update_guest_tools = true
         vb.name = "kubernetes-ha-master-#{i}"
         if i == 1
-          vb.memory = 2048    # More needed to run e2e tests at end
+          vb.memory = 2560    # More needed to run e2e tests at end
         else
-          vb.memory = 1024
+          vb.memory = 1280
         end
         vb.cpus = 2
       end
@@ -77,15 +85,17 @@ Vagrant.configure("2") do |config|
         # Install (opinionated) configs for vim and tmux on master-1. These used by the author for CKA exam.
         node.vm.provision "file", source: "./ubuntu/tmux.conf", destination: "$HOME/.tmux.conf"
         node.vm.provision "file", source: "./ubuntu/vimrc", destination: "$HOME/.vimrc"
+        setup_kube node
       end
     end
   end
 
   # Provision Load Balancer Node
   config.vm.define "loadbalancer" do |node|
-    node.vm.provider "virtualbox" do |vb|
+    node.vm.provider "parallels" do |vb|
+      vb.update_guest_tools = true
       vb.name = "kubernetes-ha-lb"
-      vb.memory = 512
+      vb.memory = 1280
       vb.cpus = 1
     end
     node.vm.hostname = "loadbalancer"
@@ -97,9 +107,10 @@ Vagrant.configure("2") do |config|
   # Provision Worker Nodes
   (1..NUM_WORKER_NODE).each do |i|
     config.vm.define "worker-#{i}" do |node|
-      node.vm.provider "virtualbox" do |vb|
+      node.vm.provider "parallels" do |vb|
+        vb.update_guest_tools = true
         vb.name = "kubernetes-ha-worker-#{i}"
-        vb.memory = 1024
+        vb.memory = 1280
         vb.cpus = 1
       end
       node.vm.hostname = "worker-#{i}"

@@ -214,9 +214,9 @@ Going forward all activities are to be done on the `worker-2` node until [step 1
 
 ```bash
 wget -q --show-progress --https-only --timestamping \
-  https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kubectl \
-  https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kube-proxy \
-  https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kubelet
+  https://dl.k8s.io/v1.24.8/bin/linux/arm64/kubectl \
+  https://dl.k8s.io/v1.24.8/bin/linux/arm64/kube-proxy \
+  https://dl.k8s.io/v1.24.8/bin/linux/arm64/kubelet 
 ```
 
 Reference: https://kubernetes.io/releases/download/#binaries

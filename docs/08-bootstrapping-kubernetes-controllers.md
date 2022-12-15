@@ -20,10 +20,10 @@ Download the official Kubernetes release binaries:
 
 ```bash
 wget -q --show-progress --https-only --timestamping \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kube-apiserver" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kube-controller-manager" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kube-scheduler" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kubectl"
+  "https://dl.k8s.io/v1.24.8/bin/linux/arm64/kube-apiserver" \
+  "https://dl.k8s.io/v1.24.8/bin/linux/arm64/kube-controller-manager" \
+  "https://dl.k8s.io/v1.24.8/bin/linux/arm64/kube-scheduler" \
+  "https://dl.k8s.io/v1.24.8/bin/linux/arm64/kubectl"
 ```
 
 Reference: https://kubernetes.io/releases/download/#binaries
@@ -60,7 +60,7 @@ The instance internal IP address will be used to advertise the API Server to mem
 Retrieve these internal IP addresses:
 
 ```bash
-INTERNAL_IP=$(ip addr show enp0s8 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
+INTERNAL_IP=$(ip addr show eth1 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
 LOADBALANCER=$(dig +short loadbalancer)
 ```
 
@@ -322,7 +322,7 @@ curl  https://${LOADBALANCER}:6443/version -k
   "buildDate": "2022-07-13T14:23:26Z",
   "goVersion": "go1.18.3",
   "compiler": "gc",
-  "platform": "linux/amd64"
+  "platform": "linux/arm64"
 }
 ```
 

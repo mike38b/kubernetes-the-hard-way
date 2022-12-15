@@ -8,7 +8,7 @@ FAILED='\033[0;31;1m'
 NC='\033[0m'
 
 # IP addresses
-INTERNAL_IP=$(ip addr show enp0s8 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
+INTERNAL_IP=$(ip addr show eth1 | grep "inet " | awk '{print $2}' | cut -d / -f 1)
 MASTER_1=$(dig +short master-1)
 MASTER_2=$(dig +short master-2)
 WORKER_1=$(dig +short worker-1)

@@ -3,9 +3,9 @@
 ## Install Go
 
 ```bash
-wget https://dl.google.com/go/go1.18.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.19.4.linux-arm64.tar.gz
 
-sudo tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.19.4.linux-arm64.tar.gz
 ```
 
 ## Install kubetest

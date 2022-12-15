@@ -1,15 +1,16 @@
-> This tutorial is a modified version of the original developed by [Kelsey Hightower](https://github.com/kelseyhightower/kubernetes-the-hard-way).
+> This tutorial is a modified version of the original developed by [Mumshad Mannambeth ](https://github.com/mmumshad/kubernetes-the-hard-way). This version specificly modified for MAC M1 users
 
-# Kubernetes The Hard Way On VirtualBox
 
-This tutorial walks you through setting up Kubernetes the hard way on a local machine using VirtualBox.
+# Kubernetes The Hard Way On Parallels MAC ARM
+
+This tutorial walks you through setting up Kubernetes the hard way on a local machine using Parallels Arm.
 This guide is not for people looking for a fully automated command to bring up a Kubernetes cluster.
 If that's you then check out [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine), or the [Getting Started Guides](http://kubernetes.io/docs/getting-started-guides/).
 
 Kubernetes The Hard Way is optimized for learning, which means taking the long route to ensure you understand each task required to bootstrap a Kubernetes cluster.
 
-This tutorial is a modified version of the original developed by [Kelsey Hightower](https://github.com/kelseyhightower/kubernetes-the-hard-way).
-While the original one uses GCP as the platform to deploy kubernetes,  we use VirtualBox and Vagrant to deploy a cluster on a local machine. If you prefer the cloud version, refer to the original one [here](https://github.com/kelseyhightower/kubernetes-the-hard-way)
+This tutorial is a modified version of the version by [Mumshad Mannambeth ](https://github.com/mmumshad/kubernetes-the-hard-way) 
+This version target users with M1 M2 ARM OSX
 
 > The results of this tutorial should not be viewed as production ready, and may receive limited support from the community, but don't let that stop you from learning!
 
@@ -25,9 +26,9 @@ The target audience for this tutorial is someone planning to support a productio
 
 Kubernetes The Hard Way guides you through bootstrapping a highly available Kubernetes cluster with end-to-end encryption between components and RBAC authentication.
 
-* [Kubernetes](https://github.com/kubernetes/kubernetes) 1.24.3
-* [Container Runtime](https://github.com/containerd/containerd) 1.5.9
-* [CNI Container Networking](https://github.com/containernetworking/cni) 0.8.6
+* [Kubernetes](https://github.com/kubernetes/kubernetes) 1.24.8
+* [Container Runtime](https://github.com/containerd/containerd) 1.6.12
+* [CNI Container Networking](https://github.com/containernetworking/cni) 1.1.1
 * [Weave Networking](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/)
 * [etcd](https://github.com/coreos/etcd) v3.5.3
 * [CoreDNS](https://github.com/coredns/coredns) v1.9.4
